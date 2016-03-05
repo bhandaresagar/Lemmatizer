@@ -24,23 +24,35 @@ public class LemmaController
 	@RequestMapping(value = "/getlemma", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody SimpleResponse getLemma(@RequestBody String text)
 	{
-		StringBuilder builder = new StringBuilder();
-		for (String lemma : lemmaService.getLemma(text))
+		try
 		{
-			builder.append(lemma + " ");
+			StringBuilder builder = new StringBuilder();
+			for (String lemma : lemmaService.getLemma(text))
+			{
+				builder.append(lemma + " ");
+			}
+			return new SimpleResponse(true, builder.toString());
+		} catch (Exception e)
+		{
+			return new SimpleResponse(false, e.getMessage());
 		}
-		return new SimpleResponse(true, builder.toString());
 	}
 
 	@RequestMapping(value = "/getlemma/{word}", method = RequestMethod.GET)
 	public @ResponseBody SimpleResponse getLemmaForWord(@PathVariable String word)
 	{
-		StringBuilder builder = new StringBuilder();
-		for (String lemma : lemmaService.getLemma(word))
+		try
 		{
-			builder.append(lemma + " ");
+			StringBuilder builder = new StringBuilder();
+			for (String lemma : lemmaService.getLemma(word))
+			{
+				builder.append(lemma + " ");
+			}
+			return new SimpleResponse(true, builder.toString());
+		} catch (Exception e)
+		{
+			return new SimpleResponse(false, e.getMessage());
 		}
-		return new SimpleResponse(true, builder.toString());
 	}
 
 }
