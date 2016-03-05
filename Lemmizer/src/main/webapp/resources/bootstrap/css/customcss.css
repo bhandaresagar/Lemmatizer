@@ -1,0 +1,7 @@
+@CHARSET "ISO-8859-1";
+
+.lemmatextarea {
+	overflow-x: scroll;
+	resize: none;
+	width: 100%
+}
